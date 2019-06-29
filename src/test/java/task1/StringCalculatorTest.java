@@ -44,7 +44,7 @@ public class StringCalculatorTest {
 
     @Test(expected = ArithmeticException.class)
     public void expectingArithmeticException() {
-        StringCalculator.add("//$$\n1$$2,,,$$\n-2" );
+        StringCalculator.add("//$$\n-1$$-2,,,$$\n-2" );
         StringCalculator.add("//$$\n1$$-2,,,$$\n-2" );
         StringCalculator.add("//$$\n1$$2,-,,$$\n-2" );
     }
