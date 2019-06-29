@@ -17,14 +17,13 @@ public class StringCalculator {
 
         for (String s : numbers.split("[,\n" + pattern + "]")) {
             if (isStringNumeric(s) && !s.isEmpty()) {
-
                 if (Integer.valueOf(s) < 0) {
                     negativeNumbers.add(Integer.valueOf(s));
                 } else {
-                    sum += Integer.valueOf(s);
+                    if (Integer.valueOf(s)<1000) {
+                        sum += Integer.valueOf(s);
+                    }
                 }
-
-
             }
         }
         if (!negativeNumbers.isEmpty()) {

@@ -37,15 +37,24 @@ public class StringCalculatorTest {
         assertEquals(6, StringCalculator.add("//$$\n1$$2\n\n3" ));
         assertEquals(6, StringCalculator.add("//$$\n1$$2,,,$$\n3" ));
 
+        //8 - Numbers bigger than 1000
+
+        assertEquals(2, StringCalculator.add("//;\n2;1000" ));
+
+        assertEquals(0, StringCalculator.add("//!\n1000!2000" ));
+
+
     }
 
 
-    //5 - negative numbers
+    //5, 6 - negative numbers
 
     @Test(expected = ArithmeticException.class)
     public void expectingArithmeticException() {
         StringCalculator.add("//$$\n-1$$-2,,,$$\n-2" );
         StringCalculator.add("//$$\n1$$-2,,,$$\n-2" );
         StringCalculator.add("//$$\n1$$2,-,,$$\n-2" );
+
+        StringCalculator.add("//$$\n10000$$-2" );
     }
 }
