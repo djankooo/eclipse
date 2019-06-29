@@ -30,16 +30,22 @@ public class StringCalculatorTest {
 
 
         //4 - Support different delimiters
-//        assertEquals(3, StringCalculator.add("//;\n1;2" ));
-//
-//        assertEquals(3, StringCalculator.add("//!\n1!2" ));
-//        assertEquals(3, StringCalculator.add("//$$\n1$$2" ));
-//        assertEquals(6, StringCalculator.add("//$$\n1$$2\n\n3" ));
-//        assertEquals(6, StringCalculator.add("//$$\n1$$2,,,$$\n3" ));
+        assertEquals(3, StringCalculator.add("//;\n1;2" ));
+
+        assertEquals(3, StringCalculator.add("//!\n1!2" ));
+        assertEquals(3, StringCalculator.add("//$$\n1$$2" ));
+        assertEquals(6, StringCalculator.add("//$$\n1$$2\n\n3" ));
+        assertEquals(6, StringCalculator.add("//$$\n1$$2,,,$$\n3" ));
+
+    }
 
 
-        //5
+    //5 - negative numbers
 
-
+    @Test(expected = ArithmeticException.class)
+    public void expectingArithmeticException() {
+        StringCalculator.add("//$$\n1$$2,,,$$\n-2" );
+        StringCalculator.add("//$$\n1$$-2,,,$$\n-2" );
+        StringCalculator.add("//$$\n1$$2,-,,$$\n-2" );
     }
 }
