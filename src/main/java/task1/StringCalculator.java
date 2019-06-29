@@ -15,23 +15,26 @@ public class StringCalculator {
             pattern = pattern.substring(0, pattern.indexOf("\n"));
         }
 
+        if (numbers.startsWith("//[")) {
+            pattern += stringOfPatterns(numbers);
+        }
+
         for (String s : numbers.split("[,\n" + pattern + "]")) {
             if (isStringNumeric(s) && !s.isEmpty()) {
                 if (Integer.valueOf(s) < 0) {
                     negativeNumbers.add(Integer.valueOf(s));
                 } else {
-                    if (Integer.valueOf(s)<1000) {
+                    if (Integer.valueOf(s) < 1000) {
                         sum += Integer.valueOf(s);
                     }
                 }
             }
         }
         if (!negativeNumbers.isEmpty()) {
-            throw new ArithmeticException("negatives not allowed -> " + negativeNumbers.toString());
-        } else  {
+            throw new IllegalArgumentException("negatives not allowed -> " + negativeNumbers.toString());
+        } else {
             return sum;
         }
-
     }
 
     private static boolean isStringNumeric(String string) {
@@ -42,5 +45,23 @@ public class StringCalculator {
             }
         }
         return true;
+    }
+
+    private static String stringOfPatterns(String string) {
+
+        String pattern = "";
+        int index = 0, index2 = 0;
+
+        while (index != -1) {
+            index = string.indexOf("[", index);
+            index2 = string.indexOf("]", index2);
+            if (index != -1 && index != -1) {
+                pattern+=string.substring(index + 1, index2);
+                index++;
+                index2++;
+            }
+
+        }
+        return pattern;
     }
 }
